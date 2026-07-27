@@ -1,6 +1,5 @@
 # CHARAN_SRI_DEV // Portfolio V1.0
 
-![Portfolio Banner](public/risk_intel_dashboard.png)
 
 A high-performance, minimalist developer portfolio built with **React 19**, **Vite**, **Tailwind CSS v4**, and custom **HTML5 Canvas** interactive particle animation systems. Designed for showcasing agentic AI projects, LLM systems, full-stack applications, and neural workflow automations.
 
