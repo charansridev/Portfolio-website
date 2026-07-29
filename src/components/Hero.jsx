@@ -18,8 +18,7 @@ export default function Hero() {
               alt="Charan Sri Dev - Nothing Theme Portrait"
               className="w-full h-auto object-cover rounded-xl grayscale contrast-125 filter"
             />
-            <div className="mt-3 flex justify-between items-center px-2 font-mono text-[10px] text-white/50 tracking-wider">
-              <span>[IMG_SRC // NOTHING_OS]</span>
+            <div className="mt-3 flex justify-end items-center px-2 font-mono text-[10px] text-white/50 tracking-wider">
               <span className="flex items-center gap-1">
                 <span className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse"></span>
                 LIVE_FEED
