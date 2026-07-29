@@ -1,7 +1,7 @@
 export default function Hero() {
   return (
     <section
-      className="relative min-h-[921px] flex flex-col justify-center px-8 md:px-32 border-b border-white/10"
+      className="relative min-h-[calc(100vh-4rem)] flex flex-col justify-center py-12 px-6 md:px-16 lg:px-24 border-b border-white/10"
       id="init"
     >
       <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16 w-full max-w-6xl mx-auto">
