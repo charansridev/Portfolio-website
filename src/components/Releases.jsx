@@ -1,6 +1,9 @@
-export default function Releases() {
+import { projects } from '../data/projectsData';
+
+export default function Releases({ onSelectProject }) {
   return (
     <section className="p-8 md:p-32 border-b border-white/10" id="releases">
+      {/* Header */}
       <div className="mb-16 flex items-end justify-between">
         <div>
           <h2 className="font-headline-md text-headline-md text-white dot-matrix">
@@ -15,319 +18,96 @@ export default function Releases() {
         </span>
       </div>
 
-      {/* Bento Projects Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-        {/* Project 1: Burnout Risk Analyzer */}
-        <div className="md:col-span-12 group border border-white/10 glass-panel overflow-hidden relative">
-          <div className="absolute top-0 right-0 p-4 font-mono text-[10px] text-white/20 z-10">
-            #001
-          </div>
-          <div className="flex flex-col md:flex-row items-stretch">
-            <div className="flex-1 p-8 flex flex-col justify-center">
-              <div className="flex items-center gap-2 mb-4">
-                <span className="status-dot"></span>
-                <h3 className="font-headline-md text-headline-md text-white leading-tight">
-                  Burnout Risk Analyzer
+      {/* Vertical ID Cards Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {projects.map((project) => (
+          /* Outer Glow Wrapper (.card structure with site design colors) */
+          <div
+            key={project.id}
+            className="group relative p-[2px] rounded-2xl bg-gradient-to-br from-white/20 via-white/10 to-[#E51912]/40 transition-all duration-300 hover:from-white hover:via-[#E51912]/80 hover:to-white hover:shadow-[0_0_30px_2px_rgba(229,25,18,0.4)]"
+          >
+            {/* Surrounding Glowing Dots around the card */}
+            <div className="absolute -top-1.5 -left-1.5 w-3 h-3 rounded-full bg-white/20 group-hover:bg-[#E51912] group-hover:shadow-[0_0_12px_#E51912] group-hover:scale-125 transition-all duration-300 z-20 pointer-events-none"></div>
+            <div className="absolute -top-1.5 -right-1.5 w-3 h-3 rounded-full bg-white/20 group-hover:bg-[#E51912] group-hover:shadow-[0_0_12px_#E51912] group-hover:scale-125 transition-all duration-300 z-20 pointer-events-none"></div>
+            <div className="absolute -bottom-1.5 -left-1.5 w-3 h-3 rounded-full bg-white/20 group-hover:bg-[#E51912] group-hover:shadow-[0_0_12px_#E51912] group-hover:scale-125 transition-all duration-300 z-20 pointer-events-none"></div>
+            <div className="absolute -bottom-1.5 -right-1.5 w-3 h-3 rounded-full bg-white/20 group-hover:bg-[#E51912] group-hover:shadow-[0_0_12px_#E51912] group-hover:scale-125 transition-all duration-300 z-20 pointer-events-none"></div>
+
+            {/* Inner Content Card (.card2 structure scaling on hover) */}
+            <div className="w-full h-full bg-[#0c0c0c] group-hover:scale-[0.985] rounded-[14px] p-6 flex flex-col justify-between transition-all duration-300 relative overflow-hidden">
+              {/* Corner Reticles (+) */}
+              <div className="absolute top-2.5 left-3 text-[10px] font-mono text-white/30 group-hover:text-[#E51912] group-hover:drop-shadow-[0_0_6px_#E51912] transition-colors">
+                +
+              </div>
+              <div className="absolute top-2.5 right-3 text-[10px] font-mono text-white/30 group-hover:text-[#E51912] group-hover:drop-shadow-[0_0_6px_#E51912] transition-colors">
+                +
+              </div>
+              <div className="absolute bottom-2.5 left-3 text-[10px] font-mono text-white/30 group-hover:text-[#E51912] group-hover:drop-shadow-[0_0_6px_#E51912] transition-colors">
+                +
+              </div>
+              <div className="absolute bottom-2.5 right-3 text-[10px] font-mono text-white/30 group-hover:text-[#E51912] group-hover:drop-shadow-[0_0_6px_#E51912] transition-colors">
+                +
+              </div>
+
+              {/* Ambient Hover Matrix Background Glow */}
+              <div className="absolute inset-0 bg-gradient-to-b from-[#E51912]/[0.06] via-transparent to-white/[0.03] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+
+              <div>
+                {/* ID Card Top Header */}
+                <div className="flex items-center justify-between pb-4 mb-4 border-b border-white/10">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-[#E51912] shadow-[0_0_8px_#E51912] group-hover:animate-pulse"></span>
+                    <span className="font-mono text-[10px] text-white/40 group-hover:text-white/80 tracking-wider">
+                      PROJ_PASS // ID
+                    </span>
+                  </div>
+                  <span className="font-mono text-[11px] font-bold text-white/40 group-hover:text-white tracking-widest">
+                    {project.id}
+                  </span>
+                </div>
+
+                {/* Title */}
+                <h3 className="font-headline-md text-xl text-white font-semibold leading-snug mb-3 group-hover:text-[#E51912] transition-colors">
+                  {project.title}
                 </h3>
+
+                {/* Truncated Description */}
+                <p className="font-body-md text-sm text-white/60 line-clamp-3 mb-6 group-hover:text-white/80 transition-colors leading-relaxed">
+                  {project.shortDescription}
+                </p>
+
+                {/* Tech Badges */}
+                <div className="flex flex-wrap gap-1.5 mb-6">
+                  {project.tags.slice(0, 4).map((tag, idx) => (
+                    <span
+                      key={idx}
+                      className="px-2.5 py-0.5 bg-white/[0.03] border border-white/10 font-mono text-[10px] text-white/50 rounded group-hover:border-[#E51912]/50 group-hover:text-white/90 transition-colors"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                  {project.tags.length > 4 && (
+                    <span className="px-2 py-0.5 font-mono text-[10px] text-white/30">
+                      +{project.tags.length - 4}
+                    </span>
+                  )}
+                </div>
               </div>
-              <p className="font-body-md text-body-md text-white/60 mb-8">
-                Task-Level Employee Burnout Risk Detection System built for the
-                Xebia Hackathon at Takshila University. Evaluates task patterns
-                and generates AI-powered preventive recommendations.
-              </p>
-              <div className="flex gap-4 flex-wrap">
-                <a
-                  href="https://task-level-employee-burn-risk-detection-39l2.onrender.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-8 py-3 rounded-full border border-white/20 text-white font-label-caps text-label-caps hover:border-white transition-all flex items-center gap-4 group/btn decoration-none inline-flex"
+
+              {/* Card Action Footer */}
+              <div className="pt-4 border-t border-white/10 flex items-center justify-between gap-2">
+                <button
+                  onClick={() => onSelectProject(project)}
+                  className="flex-1 py-2.5 px-4 rounded border border-white/20 hover:border-[#E51912] bg-white/5 hover:bg-[#E51912] hover:text-white font-label-caps text-xs text-white transition-all flex items-center justify-center gap-2 group/btn cursor-pointer shadow-none hover:shadow-[0_0_15px_rgba(229,25,18,0.5)]"
                 >
-                  ACCESS
-                  <span
-                    className="material-symbols-outlined text-sm group-hover/btn:translate-x-1 transition-transform"
-                    data-icon="arrow_forward"
-                  >
-                    arrow_forward
-                  </span>
-                </a>
-                <a
-                  href="https://github.com/charansridev/Task-Level-Employee-Burn-Risk-Detection-System"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-8 py-3 rounded-full border border-white/20 text-white/60 hover:text-white font-label-caps text-label-caps hover:border-white transition-all flex items-center gap-4 group/btn decoration-none inline-flex"
-                >
-                  ACCESS CODE
-                  <span
-                    className="material-symbols-outlined text-sm group-hover/btn:translate-x-1 transition-transform"
-                    data-icon="code"
-                  >
-                    code
-                  </span>
-                </a>
+                  MORE DETAILS
+                  <svg className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </button>
               </div>
             </div>
-            <div className="w-full md:w-1/2 flex items-center justify-center border-t md:border-t-0 md:border-l border-white/10 bg-surface-container p-4 md:p-6 overflow-hidden">
-              <img
-                alt="Task-Level Employee Burnout Risk Detection Interface"
-                className="w-full h-auto object-contain opacity-85 group-hover:scale-105 transition-transform duration-700 rounded-lg"
-                src="/risk_intel_dashboard.png"
-              />
-            </div>
           </div>
-        </div>
-
-        {/* Project 2: NewsTrack */}
-        <div className="md:col-span-12 group border border-white/10 glass-panel overflow-hidden relative">
-          <div className="absolute top-0 right-0 p-4 font-mono text-[10px] text-white/20 z-10">
-            #002
-          </div>
-          <div className="flex flex-col md:flex-row items-stretch">
-            <div className="flex-1 p-8 flex flex-col justify-center">
-              <div className="flex items-center gap-2 mb-4">
-                <span className="status-dot"></span>
-                <h3 className="font-headline-md text-headline-md text-white leading-tight">
-                  NewsTrack — Newspaper Distribution Tracking System
-                </h3>
-              </div>
-              <p className="font-body-md text-body-md text-white/60 mb-8">
-                Full-stack supply chain & distribution management platform for
-                newspaper publishers, hubs, and vendors. Features real-time
-                websocket tracking, inventory management, driver dispatch, and
-                automated issue resolution. Built with React, Vite, TypeScript,
-                Tailwind CSS, FastAPI, and SQLAlchemy.
-              </p>
-              <div className="flex gap-4 flex-wrap">
-                <a
-                  href="https://github.com/charansridev/NewsTrack"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-8 py-3 rounded-full border border-white/20 text-white/60 hover:text-white font-label-caps text-label-caps hover:border-white transition-all flex items-center gap-4 group/btn decoration-none inline-flex"
-                >
-                  ACCESS CODE
-                  <span
-                    className="material-symbols-outlined text-sm group-hover/btn:translate-x-1 transition-transform"
-                    data-icon="code"
-                  >
-                    code
-                  </span>
-                </a>
-              </div>
-            </div>
-            <div className="w-full md:w-1/2 flex items-center justify-center border-t md:border-t-0 md:border-l border-white/10 bg-surface-container p-4 md:p-6 overflow-hidden">
-              <img
-                alt="NewsTrack Newspaper Distribution Tracking Dashboard Interface"
-                className="w-full h-auto object-contain opacity-85 group-hover:scale-105 transition-transform duration-700 rounded-lg"
-                src="/news_track_dashboard.png"
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Project 3: N8N Neural Workflows */}
-        <div className="md:col-span-12 group border border-white/10 glass-panel p-8 md:p-12 flex flex-col md:flex-row gap-8 items-center relative overflow-hidden">
-          <div className="absolute top-0 right-0 p-4 font-mono text-[10px] text-white/20 z-10">
-            #003
-          </div>
-          <div className="flex-1">
-            <h3 className="font-headline-md text-headline-md text-white mb-4">
-              N8N Neural Workflows & Automations
-            </h3>
-            <p className="font-body-md text-body-md text-white/60 max-w-3xl mb-6">
-              A comprehensive suite of 16 specialized autonomous AI workflows.
-              Includes Telegram voice-to-invoice agents, AI shopping assistants,
-              Groq Whisper audio summarizers, Suno music generators, and
-              automated LinkedIn job search engines powered by Google Gemini,
-              LangChain, and n8n.
-            </p>
-            <div className="flex flex-wrap gap-2">
-              <span className="px-3 py-1 border border-white/10 rounded-full font-mono text-[10px] text-white/40">
-                16 WORKFLOWS
-              </span>
-              <span className="px-3 py-1 border border-white/10 rounded-full font-mono text-[10px] text-white/40">
-                GROQ WHISPER
-              </span>
-              <span className="px-3 py-1 border border-white/10 rounded-full font-mono text-[10px] text-white/40">
-                GEMINI 2.5 FLASH
-              </span>
-              <span className="px-3 py-1 border border-white/10 rounded-full font-mono text-[10px] text-white/40">
-                MURF.AI / SUNO API
-              </span>
-            </div>
-          </div>
-          <div className="w-full md:w-auto flex gap-4 flex-wrap">
-            <a
-              href="https://github.com/charansridev/N8N-AUTOMATIONS"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full md:w-auto px-12 py-4 rounded-full border border-white/20 font-label-caps text-label-caps text-white hover:border-white transition-all flex items-center justify-center gap-4 group/btn decoration-none inline-flex"
-            >
-              ACCESS REPO
-              <span
-                className="material-symbols-outlined text-sm group-hover/btn:translate-x-1 transition-transform"
-                data-icon="arrow_forward"
-              >
-                arrow_forward
-              </span>
-            </a>
-          </div>
-        </div>
-
-        {/* Project 4: DrishtiFi (No Image) */}
-        <div className="md:col-span-12 group border border-white/10 glass-panel p-8 md:p-12 flex flex-col md:flex-row gap-8 items-center relative overflow-hidden">
-          <div className="absolute top-0 right-0 p-4 font-mono text-[10px] text-white/20 z-10">
-            #004
-          </div>
-          <div className="flex-1">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="status-dot"></span>
-              <h3 className="font-headline-md text-headline-md text-white leading-tight">
-                DrishtiFi — AI Digital Credit-Readiness Assessment for Offline MSMEs
-              </h3>
-            </div>
-            <p className="font-body-md text-body-md text-white/60 max-w-3xl mb-6">
-              Multimodal AI-powered credit assessment platform built for the
-              OpenAI Academy x NxtWave Regional Buildathon. Evaluates physical
-              shop inventory density and handwritten ledger photos (Khaata) to
-              generate bank-grade digital credit-readiness reports and
-              micro-loan recommendations for unbanked informal MSMEs. Built with
-              React 19, TypeScript, Vite, Tailwind CSS, and Google Gemini 2.5
-              Multimodal AI.
-            </p>
-            <div className="flex flex-wrap gap-2">
-              <span className="px-3 py-1 border border-white/10 rounded-full font-mono text-[10px] text-white/40">
-                REACT 19
-              </span>
-              <span className="px-3 py-1 border border-white/10 rounded-full font-mono text-[10px] text-white/40">
-                GEMINI 2.5 MULTIMODAL
-              </span>
-              <span className="px-3 py-1 border border-white/10 rounded-full font-mono text-[10px] text-white/40">
-                OPENAI BUILDATHON
-              </span>
-            </div>
-          </div>
-          <div className="w-full md:w-auto flex gap-4 flex-wrap">
-            <a
-              href="https://drishtifi.ai.studio/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full md:w-auto px-8 py-4 rounded-full border border-white/20 text-white font-label-caps text-label-caps hover:border-white transition-all flex items-center justify-center gap-4 group/btn decoration-none inline-flex"
-            >
-              LIVE DEMO
-              <span
-                className="material-symbols-outlined text-sm group-hover/btn:translate-x-1 transition-transform"
-                data-icon="open_in_new"
-              >
-                open_in_new
-              </span>
-            </a>
-            <a
-              href="https://github.com/charansridev/DrishtiFi"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full md:w-auto px-8 py-4 rounded-full border border-white/20 text-white/60 hover:text-white font-label-caps text-label-caps hover:border-white transition-all flex items-center justify-center gap-4 group/btn decoration-none inline-flex"
-            >
-              ACCESS CODE
-              <span
-                className="material-symbols-outlined text-sm group-hover/btn:translate-x-1 transition-transform"
-                data-icon="code"
-              >
-                code
-              </span>
-            </a>
-          </div>
-        </div>
-
-        {/* Project 5: PolicyPay (Side-by-side) */}
-        <div className="md:col-span-6 group border border-white/10 glass-panel p-8 md:p-10 flex flex-col justify-between relative overflow-hidden">
-          <div className="absolute top-0 right-0 p-4 font-mono text-[10px] text-white/20 z-10">
-            #005
-          </div>
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <span className="status-dot"></span>
-              <h3 className="font-headline-md text-headline-md text-white leading-tight">
-                PolicyPay — Life Insurance Daily Payment CRM
-              </h3>
-            </div>
-            <p className="font-body-md text-body-md text-white/60 mb-8">
-              Open-source full-stack CRM built for life insurance agents to
-              streamline daily premium payment tracking. Features one-click
-              WhatsApp client reminders, smart monthly/annual recurring
-              renewals, deferred payment forwarding, and real-time collection
-              analytics. Built with React 19, Vite, Tailwind CSS, Node.js,
-              Express, and MongoDB.
-            </p>
-          </div>
-          <div className="flex gap-4 flex-wrap mt-4">
-            <a
-              href="https://policy-crm-dashbord-hazel.vercel.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-8 py-3 rounded-full border border-white/20 text-white font-label-caps text-label-caps hover:border-white transition-all flex items-center gap-4 group/btn decoration-none inline-flex"
-            >
-              LIVE DEMO
-              <span
-                className="material-symbols-outlined text-sm group-hover/btn:translate-x-1 transition-transform"
-                data-icon="open_in_new"
-              >
-                open_in_new
-              </span>
-            </a>
-            <a
-              href="https://github.com/charansridev/policyCRM-Dashbord"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-8 py-3 rounded-full border border-white/20 text-white/60 hover:text-white font-label-caps text-label-caps hover:border-white transition-all flex items-center gap-4 group/btn decoration-none inline-flex"
-            >
-              ACCESS CODE
-              <span
-                className="material-symbols-outlined text-sm group-hover/btn:translate-x-1 transition-transform"
-                data-icon="code"
-              >
-                code
-              </span>
-            </a>
-          </div>
-        </div>
-
-        {/* Project 6: Voice to Invoice (Side-by-side) */}
-        <div className="md:col-span-6 group border border-white/10 glass-panel p-8 md:p-10 flex flex-col justify-between relative overflow-hidden">
-          <div className="absolute top-0 right-0 p-4 font-mono text-[10px] text-white/20 z-10">
-            #006
-          </div>
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <span className="status-dot"></span>
-              <h3 className="font-headline-md text-headline-md text-white leading-tight">
-                Voice to Invoice — AI-Powered Telegram Billing Bot
-              </h3>
-            </div>
-            <p className="font-body-md text-body-md text-white/60 mb-8">
-              Automated AI-powered billing solution for small merchants and
-              local shop owners. Converts voice notes sent on Telegram into
-              structured billing data using Google Gemini AI, renders custom
-              HTML invoices, and generates instant downloadable PDF documents
-              delivered back in chat. Built with n8n, Google Gemini 2.5,
-              Telegram Bot API, JavaScript, and PDFShift.
-            </p>
-          </div>
-          <div className="flex gap-4 flex-wrap mt-4">
-            <a
-              href="https://github.com/charansridev/voice-to-invoice"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-8 py-3 rounded-full border border-white/20 text-white/60 hover:text-white font-label-caps text-label-caps hover:border-white transition-all flex items-center gap-4 group/btn decoration-none inline-flex"
-            >
-              ACCESS CODE
-              <span
-                className="material-symbols-outlined text-sm group-hover/btn:translate-x-1 transition-transform"
-                data-icon="code"
-              >
-                code
-              </span>
-            </a>
-          </div>
-        </div>
+        ))}
       </div>
     </section>
   );
