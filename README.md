@@ -30,7 +30,7 @@ A high-performance, minimalist developer portfolio built with **React 19**, **Vi
 |---|---|---|---|
 | **001** | **Burnout Risk Analyzer** | Task-Level Employee Burnout Risk Detection System built for Xebia Hackathon. | React, AI, [Demo](https://task-level-employee-burn-risk-detection-39l2.onrender.com/) • [Code](https://github.com/charansridev/Task-Level-Employee-Burn-Risk-Detection-System) |
 | **002** | **NewsTrack** | Full-stack supply chain & newspaper distribution management system with real-time tracking. | FastAPI, React, [Code](https://github.com/charansridev/NewsTrack) |
-| **003** | **N8N Neural Workflows** | 16 specialized autonomous AI workflows (Groq Whisper, Gemini 2.5, Telegram bots, Suno API). | n8n, LangChain, [Repo](https://github.com/charansridev/N8N-AUTOMATIONS) |
+| **003** | **N8N Workflows** | 16 specialized autonomous AI workflows (Groq Whisper, Gemini 2.5, Telegram bots, Suno API). | n8n, LangChain, [Repo](https://github.com/charansridev/N8N-AUTOMATIONS) |
 | **004** | **DrishtiFi** | Multimodal AI credit-readiness assessment for offline MSMEs built for OpenAI Academy Buildathon. | React 19, Gemini 2.5, [Demo](https://drishtifi.ai.studio/) • [Code](https://github.com/charansridev/DrishtiFi) |
 | **005** | **PolicyPay** | Full-stack life insurance daily payment CRM with one-click WhatsApp client reminders. | React 19, Express, MongoDB, [Demo](https://policy-crm-dashbord-hazel.vercel.app/) • [Code](https://github.com/charansridev/policyCRM-Dashbord) |
 | **006** | **Voice to Invoice** | Telegram AI bot converting voice notes into structured JSON and downloadable PDF invoices. | n8n, Gemini 2.5, PDFShift, [Code](https://github.com/charansridev/voice-to-invoice) |
