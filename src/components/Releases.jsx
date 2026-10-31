@@ -3,7 +3,6 @@ import { projects } from '../data/projectsData';
 export default function Releases({ onSelectProject }) {
   return (
     <section className="p-8 md:p-32 border-b border-white/10" id="releases">
-      {/* Header */}
       <div className="mb-16 flex items-end justify-between">
         <div>
           <h2 className="font-headline-md text-headline-md text-white dot-matrix">
@@ -18,97 +17,107 @@ export default function Releases({ onSelectProject }) {
         </span>
       </div>
 
-      {/* Vertical ID Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {projects.map((project) => (
-          /* Outer Glow Wrapper (.card structure with site design colors) */
-          <div
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {projects.map((project, index) => (
+          <ProjectCard
             key={project.id}
-            className="group relative p-[2px] rounded-2xl bg-gradient-to-br from-white/20 via-white/10 to-[#E51912]/40 transition-all duration-300 hover:from-white hover:via-[#E51912]/80 hover:to-white hover:shadow-[0_0_30px_2px_rgba(229,25,18,0.4)]"
-          >
-            {/* Surrounding Glowing Dots around the card */}
-            <div className="absolute -top-1.5 -left-1.5 w-3 h-3 rounded-full bg-white/20 group-hover:bg-[#E51912] group-hover:shadow-[0_0_12px_#E51912] group-hover:scale-125 transition-all duration-300 z-20 pointer-events-none"></div>
-            <div className="absolute -top-1.5 -right-1.5 w-3 h-3 rounded-full bg-white/20 group-hover:bg-[#E51912] group-hover:shadow-[0_0_12px_#E51912] group-hover:scale-125 transition-all duration-300 z-20 pointer-events-none"></div>
-            <div className="absolute -bottom-1.5 -left-1.5 w-3 h-3 rounded-full bg-white/20 group-hover:bg-[#E51912] group-hover:shadow-[0_0_12px_#E51912] group-hover:scale-125 transition-all duration-300 z-20 pointer-events-none"></div>
-            <div className="absolute -bottom-1.5 -right-1.5 w-3 h-3 rounded-full bg-white/20 group-hover:bg-[#E51912] group-hover:shadow-[0_0_12px_#E51912] group-hover:scale-125 transition-all duration-300 z-20 pointer-events-none"></div>
-
-            {/* Inner Content Card (.card2 structure scaling on hover) */}
-            <div className="w-full h-full bg-[#0c0c0c] group-hover:scale-[0.985] rounded-[14px] p-6 flex flex-col justify-between transition-all duration-300 relative overflow-hidden">
-              {/* Corner Reticles (+) */}
-              <div className="absolute top-2.5 left-3 text-[10px] font-mono text-white/30 group-hover:text-[#E51912] group-hover:drop-shadow-[0_0_6px_#E51912] transition-colors">
-                +
-              </div>
-              <div className="absolute top-2.5 right-3 text-[10px] font-mono text-white/30 group-hover:text-[#E51912] group-hover:drop-shadow-[0_0_6px_#E51912] transition-colors">
-                +
-              </div>
-              <div className="absolute bottom-2.5 left-3 text-[10px] font-mono text-white/30 group-hover:text-[#E51912] group-hover:drop-shadow-[0_0_6px_#E51912] transition-colors">
-                +
-              </div>
-              <div className="absolute bottom-2.5 right-3 text-[10px] font-mono text-white/30 group-hover:text-[#E51912] group-hover:drop-shadow-[0_0_6px_#E51912] transition-colors">
-                +
-              </div>
-
-              {/* Ambient Hover Matrix Background Glow */}
-              <div className="absolute inset-0 bg-gradient-to-b from-[#E51912]/[0.06] via-transparent to-white/[0.03] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
-
-              <div>
-                {/* ID Card Top Header */}
-                <div className="flex items-center justify-between pb-4 mb-4 border-b border-white/10">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[#E51912] shadow-[0_0_8px_#E51912] group-hover:animate-pulse"></span>
-                    <span className="font-mono text-[10px] text-white/40 group-hover:text-white/80 tracking-wider">
-                      PROJ_PASS // ID
-                    </span>
-                  </div>
-                  <span className="font-mono text-[11px] font-bold text-white/40 group-hover:text-white tracking-widest">
-                    {project.id}
-                  </span>
-                </div>
-
-                {/* Title */}
-                <h3 className="font-headline-md text-xl text-white font-semibold leading-snug mb-3 group-hover:text-[#E51912] transition-colors">
-                  {project.title}
-                </h3>
-
-                {/* Truncated Description */}
-                <p className="font-body-md text-sm text-white/60 line-clamp-3 mb-6 group-hover:text-white/80 transition-colors leading-relaxed">
-                  {project.shortDescription}
-                </p>
-
-                {/* Tech Badges */}
-                <div className="flex flex-wrap gap-1.5 mb-6">
-                  {project.tags.slice(0, 4).map((tag, idx) => (
-                    <span
-                      key={idx}
-                      className="px-2.5 py-0.5 bg-white/[0.03] border border-white/10 font-mono text-[10px] text-white/50 rounded group-hover:border-[#E51912]/50 group-hover:text-white/90 transition-colors"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                  {project.tags.length > 4 && (
-                    <span className="px-2 py-0.5 font-mono text-[10px] text-white/30">
-                      +{project.tags.length - 4}
-                    </span>
-                  )}
-                </div>
-              </div>
-
-              {/* Card Action Footer */}
-              <div className="pt-4 border-t border-white/10 flex items-center justify-between gap-2">
-                <button
-                  onClick={() => onSelectProject(project)}
-                  className="flex-1 py-2.5 px-4 rounded border border-white/20 hover:border-[#E51912] bg-white/5 hover:bg-[#E51912] hover:text-white font-label-caps text-xs text-white transition-all flex items-center justify-center gap-2 group/btn cursor-pointer shadow-none hover:shadow-[0_0_15px_rgba(229,25,18,0.5)]"
-                >
-                  MORE DETAILS
-                  <svg className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </div>
+            project={project}
+            onSelect={onSelectProject}
+            index={index}
+          />
         ))}
       </div>
     </section>
+  );
+}
+
+function ProjectCard({ project, onSelect, index }) {
+  const accentColors = [
+    '#E51912', // red
+    '#00D4AA', // teal
+    '#F5A623', // amber
+    '#7C5CFF', // purple
+    '#FF6B35', // orange
+    '#00B4D8', // cyan
+  ];
+  const accent = accentColors[index % accentColors.length];
+
+  return (
+    <article
+      className="group relative bg-surface rounded-2xl overflow-hidden border border-white/5
+        transition-all duration-500 ease-out
+        hover:border-white/15 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.6)]
+        hover:-translate-y-1.5
+        active:scale-[0.985] active:transition-none
+        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E51912] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+      style={{ transitionDelay: `${index * 60}ms` }}
+    >
+      <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent)]/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ '--accent': accent }} />
+      
+      <div className="absolute left-0 top-0 bottom-0 w-1 bg-[var(--accent)] scale-y-0 group-hover:scale-y-100 transition-transform duration-500 ease-out origin-bottom" style={{ '--accent': accent }} />
+
+      <div className="relative p-6 flex flex-col h-full">
+        <div className="flex items-center justify-between mb-5">
+          <span className="font-mono text-[10px] text-white/30 tracking-wider uppercase">
+            {project.id}
+          </span>
+          <div className="w-2 h-2 rounded-full bg-[var(--accent)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-[0_0_10px_var(--accent)]" style={{ '--accent': accent }} />
+        </div>
+
+        <h3 className="font-headline-md text-xl text-white font-medium leading-snug mb-3
+          group-hover:text-[var(--accent)] transition-colors duration-300"
+          style={{ '--accent': accent }}>
+          {project.title}
+        </h3>
+
+        <p className="font-body-md text-sm text-white/55 line-clamp-3 mb-6 flex-1
+          group-hover:text-white/75 transition-colors duration-300 leading-relaxed">
+          {project.shortDescription}
+        </p>
+
+        <div className="flex flex-wrap gap-2 mb-6">
+          {project.tags.slice(0, 4).map((tag, idx) => (
+            <span
+              key={idx}
+              className="px-3 py-1 bg-white/[0.02] border border-white/8 font-mono text-[10px] text-white/45 rounded-full
+                group-hover:border-[var(--accent)]/40 group-hover:text-white/90 group-hover:bg-[var(--accent)]/10
+                transition-all duration-300"
+              style={{ '--accent': accent }}
+            >
+              {tag}
+            </span>
+          ))}
+          {project.tags.length > 4 && (
+            <span className="px-3 py-1 font-mono text-[10px] text-white/25 flex items-center">
+              +{project.tags.length - 4}
+            </span>
+          )}
+        </div>
+
+        <div className="pt-4 border-t border-white/5">
+          <button
+            onClick={() => onSelect(project)}
+            className="w-full py-3 px-4 rounded-xl bg-white/[0.02] border border-white/8 hover:border-[var(--accent)]/50 hover:bg-[var(--accent)]/10
+              font-label-caps text-sm text-white/70 hover:text-white
+              transition-all duration-300
+              flex items-center justify-center gap-2
+              focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+            style={{ '--accent': accent }}
+          >
+            VIEW PROJECT
+            <svg
+              className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 text-[var(--accent)]"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              style={{ '--accent': accent }}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </article>
   );
 }
