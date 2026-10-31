@@ -42,7 +42,7 @@ export const projects = [
       "Open-source full-stack CRM built for life insurance agents to streamline daily premium payment tracking. Features one-click WhatsApp client reminders, smart monthly/annual recurring renewals, deferred payment forwarding, and real-time collection analytics.",
     image: null,
     tags: ["React 19", "Node.js", "Express", "MongoDB", "Tailwind CSS"],
-    liveUrl: "https://policy-crm-dashbord-hazel.vercel.app/",
+    liveUrl: "https://policycrm-dashbord.vercel.app",
     githubUrl: "https://github.com/charansridev/policyCRM-Dashbord",
     features: [
       "Daily policy premium payment ledger & overdue tracking",
