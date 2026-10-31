@@ -41,7 +41,7 @@ export default function Hero() {
           </h1>
           <p className="font-body-lg text-body-lg text-white/80 max-w-xl">
             | B.Tech CSE 2nd Year Student from NIAT Takshashila University |{" "}
-            <br /> | Agentic AI & ML Developer | <br /> | Architecting
+            <br /> | Agentic AI & MERN Developer | <br /> | Architecting
             autonomous AI Agents and workflow | <br /> | Trying to solve
             Realworld Problems with Software |
           </p>
